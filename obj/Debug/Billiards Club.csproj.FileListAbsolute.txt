@@ -1,0 +1,14 @@
+C:\Users\User\Source\Repos\Billiards Club\bin\Debug\Billiards Club.exe.config
+C:\Users\User\Source\Repos\Billiards Club\bin\Debug\Billiards Club.exe
+C:\Users\User\Source\Repos\Billiards Club\bin\Debug\Billiards Club.pdb
+C:\Users\User\Source\Repos\Billiards Club\obj\Debug\Billiards Club.csproj.AssemblyReference.cache
+C:\Users\User\Source\Repos\Billiards Club\obj\Debug\Billiards Club.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Source\Repos\Billiards Club\obj\Debug\Billiards_Club.Form1.resources
+C:\Users\User\Source\Repos\Billiards Club\obj\Debug\Billiards_Club.Properties.Resources.resources
+C:\Users\User\Source\Repos\Billiards Club\obj\Debug\Billiards Club.csproj.GenerateResource.cache
+C:\Users\User\Source\Repos\Billiards Club\obj\Debug\Billiards Club.csproj.CoreCompileInputs.cache
+C:\Users\User\Source\Repos\Billiards Club\obj\Debug\Billiards Club.exe
+C:\Users\User\Source\Repos\Billiards Club\obj\Debug\Billiards Club.pdb
+C:\Users\User\Source\Repos\Billiards Club\obj\Debug\Billiards_Club.Form2.resources
+C:\Users\User\Source\Repos\Billiards Club\obj\Debug\Billiards_Club.Form3.resources
+C:\Users\User\Source\Repos\Billiards Club\obj\Debug\Billiards_Club.Form4.resources
