@@ -15,13 +15,16 @@ namespace Billiards_Club
         private string _Player;
         private int _Price;
         private string _TableTime;
-        public Form4(string Player , int Price,string TableTime)
+
+
+        public Form4(string Player, int Price, string TableTime)
         {
             InitializeComponent();
             _Player = Player;
             _Price = Price;
             _TableTime = TableTime;
         }
+
 
         private void Form4_Load(object sender, EventArgs e)
         {

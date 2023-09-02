@@ -12,3 +12,4 @@ C:\Users\User\Source\Repos\Billiards Club\obj\Debug\Billiards Club.pdb
 C:\Users\User\Source\Repos\Billiards Club\obj\Debug\Billiards_Club.Form2.resources
 C:\Users\User\Source\Repos\Billiards Club\obj\Debug\Billiards_Club.Form3.resources
 C:\Users\User\Source\Repos\Billiards Club\obj\Debug\Billiards_Club.Form4.resources
+C:\Users\User\Source\Repos\Billiards Club\obj\Debug\Billiards_Club.ctrlBilliardTable.resources
