@@ -30,104 +30,69 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctrlBilliardTable));
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblPlayer1 = new System.Windows.Forms.Label();
-            this.btnStop1 = new System.Windows.Forms.Button();
-            this.btnPause1 = new System.Windows.Forms.Button();
-            this.btnStart1 = new System.Windows.Forms.Button();
-            this.lblPrice1 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.grpTable = new System.Windows.Forms.GroupBox();
+            this.btnEnd = new System.Windows.Forms.Button();
+            this.lblPlayerName = new System.Windows.Forms.Label();
+            this.btnStartStop = new System.Windows.Forms.Button();
             this.lblTime1 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.groupBox2.SuspendLayout();
+            this.TableTimer = new System.Windows.Forms.Timer(this.components);
+            this.grpTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox2
+            // grpTable
             // 
-            this.groupBox2.Controls.Add(this.lblPlayer1);
-            this.groupBox2.Controls.Add(this.btnStop1);
-            this.groupBox2.Controls.Add(this.btnPause1);
-            this.groupBox2.Controls.Add(this.btnStart1);
-            this.groupBox2.Controls.Add(this.lblPrice1);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.lblTime1);
-            this.groupBox2.Controls.Add(this.pictureBox3);
-            this.groupBox2.Location = new System.Drawing.Point(13, 30);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(357, 226);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
+            this.grpTable.BackColor = System.Drawing.Color.White;
+            this.grpTable.Controls.Add(this.btnEnd);
+            this.grpTable.Controls.Add(this.lblPlayerName);
+            this.grpTable.Controls.Add(this.btnStartStop);
+            this.grpTable.Controls.Add(this.lblTime1);
+            this.grpTable.Controls.Add(this.pictureBox3);
+            this.grpTable.Location = new System.Drawing.Point(13, 20);
+            this.grpTable.Name = "grpTable";
+            this.grpTable.Size = new System.Drawing.Size(357, 258);
+            this.grpTable.TabIndex = 2;
+            this.grpTable.TabStop = false;
+            this.grpTable.Text = "Table1";
             // 
-            // lblPlayer1
+            // btnEnd
             // 
-            this.lblPlayer1.AutoSize = true;
-            this.lblPlayer1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayer1.Location = new System.Drawing.Point(6, 112);
-            this.lblPlayer1.Name = "lblPlayer1";
-            this.lblPlayer1.Size = new System.Drawing.Size(78, 25);
-            this.lblPlayer1.TabIndex = 8;
-            this.lblPlayer1.Text = "Player1";
+            this.btnEnd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnEnd.Location = new System.Drawing.Point(237, 203);
+            this.btnEnd.Name = "btnEnd";
+            this.btnEnd.Size = new System.Drawing.Size(90, 35);
+            this.btnEnd.TabIndex = 9;
+            this.btnEnd.Text = "End";
+            this.btnEnd.UseVisualStyleBackColor = false;
+            this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
             // 
-            // btnStop1
+            // lblPlayerName
             // 
-            this.btnStop1.BackColor = System.Drawing.Color.Red;
-            this.btnStop1.Location = new System.Drawing.Point(261, 162);
-            this.btnStop1.Name = "btnStop1";
-            this.btnStop1.Size = new System.Drawing.Size(90, 35);
-            this.btnStop1.TabIndex = 7;
-            this.btnStop1.Text = "Stop";
-            this.btnStop1.UseVisualStyleBackColor = false;
-            this.btnStop1.Click += new System.EventHandler(this.btnStop1_Click);
+            this.lblPlayerName.AutoSize = true;
+            this.lblPlayerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlayerName.Location = new System.Drawing.Point(24, 67);
+            this.lblPlayerName.Name = "lblPlayerName";
+            this.lblPlayerName.Size = new System.Drawing.Size(78, 25);
+            this.lblPlayerName.TabIndex = 8;
+            this.lblPlayerName.Text = "Player1";
             // 
-            // btnPause1
+            // btnStartStop
             // 
-            this.btnPause1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnPause1.Location = new System.Drawing.Point(144, 162);
-            this.btnPause1.Name = "btnPause1";
-            this.btnPause1.Size = new System.Drawing.Size(90, 35);
-            this.btnPause1.TabIndex = 7;
-            this.btnPause1.Text = "Pause";
-            this.btnPause1.UseVisualStyleBackColor = false;
-            this.btnPause1.Click += new System.EventHandler(this.btnPause1_Click);
-            // 
-            // btnStart1
-            // 
-            this.btnStart1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnStart1.Location = new System.Drawing.Point(20, 162);
-            this.btnStart1.Name = "btnStart1";
-            this.btnStart1.Size = new System.Drawing.Size(90, 35);
-            this.btnStart1.TabIndex = 7;
-            this.btnStart1.Text = "Start";
-            this.btnStart1.UseVisualStyleBackColor = false;
-            this.btnStart1.Click += new System.EventHandler(this.btnStart1_Click);
-            // 
-            // lblPrice1
-            // 
-            this.lblPrice1.AutoSize = true;
-            this.lblPrice1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice1.Location = new System.Drawing.Point(62, 71);
-            this.lblPrice1.Name = "lblPrice1";
-            this.lblPrice1.Size = new System.Drawing.Size(34, 25);
-            this.lblPrice1.TabIndex = 7;
-            this.lblPrice1.Text = "0$";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(6, 71);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(62, 25);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Price:";
+            this.btnStartStop.BackColor = System.Drawing.Color.Silver;
+            this.btnStartStop.Location = new System.Drawing.Point(237, 161);
+            this.btnStartStop.Name = "btnStartStop";
+            this.btnStartStop.Size = new System.Drawing.Size(90, 35);
+            this.btnStartStop.TabIndex = 7;
+            this.btnStartStop.Text = "Start";
+            this.btnStartStop.UseVisualStyleBackColor = false;
+            this.btnStartStop.Click += new System.EventHandler(this.btnStart1_Click);
             // 
             // lblTime1
             // 
             this.lblTime1.AutoSize = true;
             this.lblTime1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime1.Location = new System.Drawing.Point(6, 35);
+            this.lblTime1.Location = new System.Drawing.Point(88, 188);
             this.lblTime1.Name = "lblTime1";
             this.lblTime1.Size = new System.Drawing.Size(90, 25);
             this.lblTime1.TabIndex = 7;
@@ -143,19 +108,21 @@
             this.pictureBox3.TabIndex = 7;
             this.pictureBox3.TabStop = false;
             // 
-            // timer1
+            // TableTimer
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.TableTimer.Interval = 1000;
+            this.TableTimer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // ctrlBilliardTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.grpTable);
             this.Name = "ctrlBilliardTable";
-            this.Size = new System.Drawing.Size(610, 373);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.Size = new System.Drawing.Size(389, 313);
+            this.Load += new System.EventHandler(this.ctrlBilliardTable_Load);
+            this.grpTable.ResumeLayout(false);
+            this.grpTable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
@@ -163,15 +130,12 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label lblPlayer1;
-        private System.Windows.Forms.Button btnStop1;
-        private System.Windows.Forms.Button btnPause1;
-        private System.Windows.Forms.Button btnStart1;
-        private System.Windows.Forms.Label lblPrice1;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox grpTable;
+        private System.Windows.Forms.Label lblPlayerName;
+        private System.Windows.Forms.Button btnStartStop;
         private System.Windows.Forms.Label lblTime1;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer TableTimer;
+        private System.Windows.Forms.Button btnEnd;
     }
 }

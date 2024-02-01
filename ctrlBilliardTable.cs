@@ -13,177 +13,150 @@ namespace Billiards_Club
 {
     public partial class ctrlBilliardTable : UserControl
     {
-        /*
-         
-         Send Price to Form4
-         Send Table Time to Form4
-         
-         */
-
         public ctrlBilliardTable()
         {
             InitializeComponent();
 
             
         }
-
-        struct stCounter
+      
+        private float _HourlyRate = 10.00F;
+        [
+      Category("Pool Config"),
+      Description("Rate Per Hour")
+        ]
+        public float HourlyRate 
         {
-            public int CountSeconds;
-            public int CountMinutes;
-            public int CountHours;
-        }
-        stCounter Counter1 = new stCounter();
-
-        public string Player;
-        public static int Price;
-        public static string TableTime;
-
-
-
-        private void ResetCounter(ref stCounter Counter)
-        {
-
-            Counter.CountSeconds = 0;
-            Counter.CountMinutes = 0;
-            Counter.CountHours = 0;
-
-        }
-        private void IncreaseTime(ref stCounter Counter)
-        {
-            if (Counter.CountSeconds > 59)
+            get
             {
-
-                Counter.CountMinutes++;
-                Counter.CountSeconds = 0;
-            }
-
-            if (Counter.CountMinutes > 59)
+                return _HourlyRate;
+            } 
+            set
             {
-
-                Counter.CountHours++;
-                Counter.CountMinutes = 0;
-            }
-
-            if (Counter.CountHours > 23)
-            {
-                Counter.CountSeconds = 0;
-                Counter.CountMinutes = 0;
-                Counter.CountHours = 0;
-            }
-
-        }
-
-        private void ChangeTimerFormat(ref stCounter Counter, Label lbl)
-        {
-
-            string AddSZero = " :0";
-            string AddMZero = " :0";
-            string AddHZero = "0";
-
-            if (Counter.CountSeconds > 9)
-            {
-                AddSZero = " : ";
-            }
-
-            if (Counter.CountMinutes > 9)
-            {
-                AddMZero = " : ";
-
-            }
-
-            if (Counter.CountHours > 9)
-            {
-                AddHZero = " ";
-            }
-
-            lbl.Text = AddHZero + Counter.CountHours.ToString() + AddMZero + Counter.CountMinutes.ToString() + AddSZero + Counter.CountSeconds.ToString();
-
-            TableTime = lblTime1.Text.ToString();
-        }
-
-        private void IncreasePrice(stCounter Counter)
-        {
-
-            if (Counter.CountMinutes == 1)
-            {
-                Price = 1;
-            }
-            if (Counter.CountMinutes == 2)
-            {
-                Price = 2;
-            }
-
-            if (Counter.CountMinutes == 3)
-            {
-                Price = 3;
-            }
-
-            if (Counter.CountMinutes == 5)
-            {
-                Price = 5;
+                _HourlyRate = value;
             }
         }
 
-        private void ChangePrice()
+        private string _TablePlayer = "Player";
+        [
+              Category("Pool Config"),
+              Description("The Player Name")
+
+        ]
+        public string TablePlayer
         {
+            get { return _TablePlayer; }
 
-            lblPrice1.Text = Price + "$";
+            set
+            {
+                 _TablePlayer = value;
+                lblPlayerName.Text = value;
+                Invalidate();
 
+
+            }
+        }
+      
+        private string _TableTitle = "Table";
+        [
+             Category("Pool Config") ,
+             Description("The Table Name")
+         ]
+        public string TableTitle
+        {
+            get { return _TableTitle; }
+
+            set
+            {
+                _TableTitle = value;
+                grpTable.Text = value;
+                Invalidate();
+            }
         }
 
-        public void CurrentPlayer()
+        int _Seconds;
+
+        public class TableCompletedEventArgs : EventArgs
         {
-            Player = lblPlayer1.Text.ToString();
-
-
+            public string TimeText { get; }
+            public int TimeInSeconds { get; }
+            public float RatePerHour { get; }
+            public float TotalFees { get; }
+            public TableCompletedEventArgs(string TimeText, int TimeInSeconds, float RatePerHour, float TotalFees)
+            {
+                this.TimeText = TimeText;
+                this.TimeInSeconds = TimeInSeconds;
+                this.RatePerHour = RatePerHour;
+                this.TotalFees = TotalFees;
+            }
         }
 
-        public void btnStart1_Click(object sender, EventArgs e)
-        {
-            timer1.Enabled = true;
+        public event EventHandler<TableCompletedEventArgs> OnTableComplete;
 
+        public void RaiseOnTableComplete(string TimeText ,int TimeInSeconds,float RatePerHour,float TotalFees)
+        {
+            RaiseOnTableComplete(new TableCompletedEventArgs(TimeText,TimeInSeconds,RatePerHour,TotalFees));
         }
 
+        protected virtual void RaiseOnTableComplete(TableCompletedEventArgs e)
+        {
+            OnTableComplete?.Invoke(this, e);
+        }
+        private void ctrlBilliardTable_Load(object sender, EventArgs e)
+        {
+            grpTable.Text = _TableTitle;
+            lblPlayerName.Text = _TablePlayer;
+        }
+
+        public void frm_DataBackEvent(object sender , string PlayerName)
+        {
+            lblPlayerName.Text = PlayerName;
+            TableTimer.Start();
+            btnStartStop.Text = "Stop";
+            grpTable.BackColor = Color.Gray;
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Counter1.CountSeconds++;
-            IncreasePrice(Counter1);
-
-            IncreaseTime(ref Counter1);
-            ChangeTimerFormat(ref Counter1, lblTime1);
+            ++_Seconds;
+            TimeSpan time = TimeSpan.FromSeconds(_Seconds);
+            string str = time.ToString(@"hh\:mm\:ss");
+            lblTime1.Text = str;
+            lblTime1.Refresh();
         }
-
-        private void btnPause1_Click(object sender, EventArgs e)
+        public void btnStart1_Click(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
-            ChangePrice();
-        }
+            if (btnStartStop.Text == "Stop")
+            {
+                btnStartStop.Text = "Start";
+                TableTimer.Stop();
 
-        private void btnStop1_Click(object sender, EventArgs e)
+            }
+            else
+            {
+                if (_Seconds == 0)
+                {
+                frmAddNewPlayer frm = new frmAddNewPlayer();
+                frm.DataBack += frm_DataBackEvent;
+                frm.ShowDialog();
+                }
+                btnStartStop.Text = "Stop";
+                TableTimer.Start();
+            }
+
+
+        }
+        private void btnEnd_Click(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
-            ResetCounter(ref Counter1);
-            CurrentPlayer();
-            ChangePrice();
-
+            TableTimer.Stop();
+            float TotalFees = (float) _Seconds / 60 / 60 * HourlyRate;
+            RaiseOnTableComplete(lblTime1.Text ,_Seconds , _HourlyRate , TotalFees);
+            grpTable.Text = "Table";
+            lblPlayerName.Text = "Player";
+            lblTime1.Text = "00:00:00";
+            btnStartStop.Text = "Start";
+            _Seconds = 0;
+            grpTable.BackColor = Color.White;
         }
-
-        public void ChangePlayerName(string PlayerName)
-        {
-                lblPlayer1.Text = PlayerName;
-
-        }
-
-        public static int ShowPrice()
-        {
-           return Price;
-        }
-        public static string ShowTableTime()
-        {
-            return TableTime;
-        }
-
 
     }
 }

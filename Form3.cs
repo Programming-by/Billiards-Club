@@ -22,64 +22,16 @@ namespace Billiards_Club
             InitializeComponent();
         }
 
-        public string Player;
-
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void ctrlBilliardTable1_OnTableComplete(object sender, ctrlBilliardTable.TableCompletedEventArgs e)
         {
+            string TableResults = "";
 
-            ctrlBilliardTable[] ctrlBilliardTableArray = { ctrlBilliardTable1, ctrlBilliardTable2, ctrlBilliardTable3 };
+            TableResults = "Time Consumed " + e.TimeText;
+            TableResults = TableResults + ", Total Seconds= " + e.TimeInSeconds;
+            TableResults = TableResults + ", HourlyRate=" + e.RatePerHour.ToString();
+            TableResults = TableResults + ", Total Fees=" + e.TotalFees.ToString();
 
-            for (int i = 0; i < ctrlBilliardTableArray.Length; i++)
-            {
-
-                if (ctrlBilliardTableArray[i].Tag == "0")
-                {
-                    ctrlBilliardTableArray[i].Tag = "1";
-                    ctrlBilliardTableArray[i].ChangePlayerName(textBox1.Text);
-                    ctrlBilliardTableArray[i].CurrentPlayer();
-                    Player = ctrlBilliardTableArray[i].Player;
-
-
-                    return;
-                }
-
-                if (ctrlBilliardTableArray[i].Tag == "0")
-                {
-                    ctrlBilliardTableArray[i].Tag = "1";
-                    ctrlBilliardTableArray[i].ChangePlayerName(textBox1.Text);
-                    ctrlBilliardTableArray[i].CurrentPlayer();
-                    Player = ctrlBilliardTableArray[i].Player;
-
-
-                    return;
-
-                }
-
-                if (ctrlBilliardTableArray[i].Tag == "0")
-                {
-                    ctrlBilliardTableArray[i].Tag = "1";
-                    ctrlBilliardTableArray[i].ChangePlayerName(textBox1.Text);
-                    ctrlBilliardTableArray[i].CurrentPlayer();
-                    Player = ctrlBilliardTableArray[i].Player;
-
-                    return;
-
-                }
-
-            }
-
-
-            }
-
-       
-        private void btnDetails_Click(object sender, EventArgs e)
-        {
-           
-            Form4 frm = new Form4(Player,ctrlBilliardTable.Price, ctrlBilliardTable.TableTime);
-
-            frm.ShowDialog();
-
+            MessageBox.Show(TableResults);
         }
-
     }
 }
